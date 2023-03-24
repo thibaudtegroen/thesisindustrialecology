@@ -26,7 +26,7 @@ future nutrient density analysis AND cumulative density current future (thesis c
 Barplot 7a (thesis chapter 3.3.1)
 
 ## 9. App_C_species_basin 
-total species across subbasins in the MB in current and future scenario
+total species across subbasins in the MB in current and future scenario based on Keijzer et al. (2022)
 
 ## 10. App_C_species_length_nutr 
 correlation analysis on length and nutrional values in the MB
