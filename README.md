@@ -33,3 +33,10 @@ correlation analysis on length and nutrional values in the MB
 
 ## 11. species_charact.csv
 contains species nutrional values and sizes (only needed for App_C_species_length_nutr.R)
+
+## Mekong_fbnames_IUCNhybas.csv
+sent via email
+
+## Mekong_DI_filtered.csv
+sent via email
+
