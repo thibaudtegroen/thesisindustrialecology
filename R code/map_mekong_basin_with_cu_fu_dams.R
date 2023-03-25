@@ -2,76 +2,8 @@
 
 # March 2023
 
-
-library(plotly)
-library(tmap)
-library(magrittr)
-library(purrr)
-library(rnaturalearth)
-library(rnaturalearthdata)
-library(sf)
-library(dplyr)
-library(foreach)
-library(rfishbase)
-library(ggplot2)
-library(grid)
-library(gridExtra)
-library(ggpubr)
-library(tmaptools)
-library(reshape2)
-library(maps)
-library("readxl")
-
-#install.packages("xlsx")
-#install.packages("reshape2")
-#install.packages("maps")
-
-#source to functions file
-source("C:/Industrial Ecology/Jaar 3/Masterscriptie/Databases/R-script/functions_thibaud_te_groen_thesis_1.R")
-#source("C:/Industrial Ecology/Jaar 3/Masterscriptie/Databases/R-script/validate_fishbase_names.R")
-
-#** load data **
-#Global Nutrient Values from Fishbase Nutrient Tool (FNAT)
-nutr <- read.csv("fish_protein_github.csv")
-
-#validated IUCN fishbase species names from the Mekong basin from Keijzer et al. (2022)
-tam_species <- read.csv("Mekong_fbnames_IUCNhybas.csv")
-
-#Fishbase matched species names with FNAT
-match_nutr <- read.csv("match_nutr.csv")
-
-# Dataset from Keijzer et al. (2022) with HPD scenarios
-mekong_ID <- read.csv("mekong_DI_filtered.csv") 
-
-#Hydropower Dams from HydroBASINS (Lehrer & Grill, 2013) from hydrobasin
-hb <-read_sf('C:/Industrial Ecology/Jaar 3/Masterscriptie/Databases/Fishbase/hydrobasin_level_12/hybas_lake_as_lev12_v1c.shp')
-
-#**Create main dataframes for analysis**
-
-#Harmonise dataframes 
-sp_nutr <- data_cleaning(match_nutr, nutr, tam_species, mekong_ID)
-
-#current scenario CV-values sf dataframe with HydroBASIN geometry
-sp_cur_nutr_cv_NA <- create_cur_cv_hb_df (sp_nutr) %>%
-  filter(MAIN_BAS != '4120024890') %>% #excluded matched subbasin which is not part of Mekong Basin
-  st_as_sf()
-
-#future scenario CV-values sf dataframe with HYDROBASIN geometry
-sp_fut_nutr_cv_NA <- create_fut_cv_hb_df (sp_nutr) %>%
-  filter(MAIN_BAS != '4120024890') %>% #excluded matched subbasin which is not part of Mekong Basin
-  st_as_sf()
-
-#current status CV-values dataframe without geometry
-df_sp_fut_nutr_cv_NA <- data.frame(sp_fut_nutr_cv_NA)
-
-#future status CV-values dataframe without geometry
-df_sp_cur_nutr_cv_NA <- data.frame(sp_cur_nutr_cv_NA)
-
-
-tmap_options_reset() #reset tmap options when you have ran other files before
-sf::sf_use_s2(FALSE) #spherical geometry switched off
-#ttm() #turn on to create interactive plots
-
+#source to main
+source("C:/Industrial Ecology/Jaar 3/Masterscriptie/Databases/R-script/main.R")
 
 #Figure 1: Map of Mekong River Basin with current and future dams ----------------------------------------------------------------
 
